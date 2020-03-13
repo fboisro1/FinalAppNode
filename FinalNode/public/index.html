@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wage Calculator</title>
+
+    <link rel="stylesheet" href="/FinalNode/public/stylesheets/themes/floopy.css" />
+    <link rel="stylesheet" href="/FinalNode/public/stylesheets/themes/floopy.min.css"/>
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+   
+    <link rel="stylesheet" href="/FinalNode/public/stylesheets/style.css"/>
+    <script src="/NodeCourseProj/public/javascripts/index.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Start of Home page -->
+    <div data-role="page"  id="home">
+            <!--  Home page header -->
+            <div data-role="header" data-theme='a' data-inline="true">
+                <h1>Weloome to Sefu's Wage Calculator!</h1>
+                <h2>Would you like to find how much your next check is?</h2>
+                <div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
+                    </ul>
+                </div>
+            </div>
+            <!--  Home page content -->
+            <div data-role="content" data-theme='a'>
+                <img src="/NodeCourseProj/images/newGif.gif" alt="gif">
+                
+            </div>
+              
+            <!--  Home page footer -->
+            <div data-role="footer" data-theme='a'>
+                    <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+        </div>
+
+
+        <div data-role="page"  id="inputPage" >
+            <!--  inputPage page header -->
+            <div data-role="header" data-theme='a'data-inline="true">
+                <div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#home" data-role="button">Home</a> </li>
+                       <li> <a href="#resultsPage" data-role="button">Results</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!--  inputPage page content -->
+            <div data-role="content" data-theme='a'>
+                <img src="/NodeCourseProj/images/leaf.gif" alt="leafy gif">
+                <form name="formcalc">
+                <p> Enter the following information to calculate your annual salary.</p>
+                
+                <br>
+                <label for="name">Please Enter your Full Name</label>
+                <input type="text" id="name">
+                <br/>
+                <label for="hours">Enter the hours you have worked</label>
+                <input name = "hours" type="text" id="hours" value="0.0" />
+                 
+                <br />
+                <label for="wages">Enter your pay rate</label>
+                <input name= "wages" type="text" id="wages" value="0.00" />
+                <br/>
+                <!--
+                    <form>
+                        <div class = "ui-field-contain">
+                            <label for="select-job">Select Job</label> 
+                            <select name="select-job" id="select-job">
+                                <option value="Medical">Medical</option>
+                                <option value="Legal">Legal</option>
+                                <option value="Service">Service</option>
+                                <option value="Textile">Textile</option>
+                            </select>
+                        </div>
+                    </form>
+-->
+                <input type="button" value="Click To Calculate" id="calculate"/>
+                </form>
+            </div>
+              
+            <!--  inputPage footer -->
+            <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+        </div>
+
+    <!-- Page 2 -->
+    <div data-role="page"  id="resultsPage">
+            <!--  Page 2 page header -->
+            <div data-role="header" data-theme='a' data-inline="true">
+                <h1>The Amazing course Proj! Page 2</h1><div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#home" data-role="button">Home</a></li>
+                       <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
+                       <li> <a href="#listPage" data-role="button">List Page</a></li>
+                       
+                    </ul>
+                </div>
+            </div>
+            
+            <!--  Page 2 content -->
+            <div data-role="content" data-theme='a'>
+
+              
+             <label>These are your results!</label>
+
+           <!--    
+           <label id="results">Results</label>
+           <label id="username">Name</label>
+             
+             --> 
+             <div data-role="content" data-theme='a'>
+                 <div>
+                    <img src="/NodeCourseProj/images/giphy.gif" alt="gif" >
+                </div>
+            </div>
+            <br>
+        
+            <p>These are your: </p>   <p id="results">Results</p>
+            <p id="username">Name</p>
+            
+            
+          
+
+             <input type="button" value="Click to save info" id="buttonSave" data-inline="true"/>
+            
+            </div>
+              
+            <!--  Page 2 footer -->
+            <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3 -->
+    <div data-role="page"  id="listPage">
+            <!-- Page 3 header -->
+            <div data-role="header" data-theme='a'>
+                <h1>The Amazing course Proj!</h1>
+                <div data-role="navbar" data-theme='a'>
+                    <ul>
+                       <li> <a href="#home" data-role="button">Home</a></li>
+                       <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
+                       <li> <a href="#resultsPage" data-role="button">Results Page</a></li>
+                       <li> <a href="#lastPage" data-role="button">Last Page</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            
+            <!--  Page 3 content -->
+            <div data-role="content" data-theme='a'>
+                <h1> Congratulations! Here are your results Page 3!</h1>
+                
+                <div id="divUserList"></div>
+
+                <div data-role="content" data-theme='a'>
+                    <div>
+                       <img src="/NodeCourseProj/images/giphy.gif" alt="gif" >
+                       <p id="IDparmHere" hidden>Oops!</p>
+                       <p id="oneName"></p>
+                       <p id ="oneWage"></p>
+                       <p id="oneHours"></p>
+                   </div>
+               </div>
+                <!--
+                <input type="button" value="Sort by hours" id="sortByHours" data-inline="true"/>
+                <input type="button" value="Sort by wages" id="sortByWages" data-inline="true"/>
+                -->
+            </div>
+            
+            <div>
+                <button id="addNewUser">Add new info here</button>
+            </div>
+
+            <!--  Page 3 footer -->
+            <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+        </div>
+    </div>
+
+     <!-- Start page 4 -->
+     <div data-role="page"  id="lastPage">
+            <!--  page 4 page header -->
+            <div data-role="header" data-theme='a'>
+                <h1>Thank you for using my app</h1>
+                <div data-role="navbar"  data-theme='a'>
+                    <ul>
+                        <li><a href="#home">Home Page</a></li>
+                        <li><a href="#inputPage">Input Page</a></li>
+                        <li><a href="#resultsPage">Results</a></li>
+                        <li><a href="#listPage">List Page</a></li>
+  
+                    </ul>
+                  </div><!-- /navbar -->
+
+            </div>
+        
+             <!--  page 4 page footer -->
+             <div data-role="footer" data-theme='a'>
+                <h1>Copyright 2020 by Sefu Boisrond</h1>
+            </div>
+                    
+            </div>
+              
+           
+        </div>
+    </div>
+        
+
+</body>
+</html>
