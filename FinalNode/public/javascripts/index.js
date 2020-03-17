@@ -21,32 +21,52 @@ userArray.push(new UserObj(28, 85, "Roody"));
     document.addEventListener("DOMContentLoaded", function(){
 
         document.getElementById("buttonSave").addEventListener("click", function () {
-            userArray.push(new UserObj(document.getElementById("wages").value, 
+            addNewUSer(new UserObj(document.getElementById("wages").value, 
             document.getElementById("hours").value, 
             document.getElementById("name").value));
             
         });
 
-        $(document).bind("change", "#select-job", function (event, ui) {
-            selectedJob = $('#select-job').val();
+
+
+          var el = document.getElementById("sortByWages");
+          if(el){
+            el.addEventListener("click", function () {
+              userArray = userArray.sort(compareWage);
+              createList();
+            });
+          };
+
+        document.getElementById("sortByName").addEventListener("click", function(){
+            userArray = userArray.sort(compareName);    
+            createList();
           });
 
-        // document.getElementById("sortByWage").addEventListener("click", function(){
-        //     userArray = userArray.sort(compareWage);
-        //     createList();
-        //   });
 
-        // document.getElementById("sortByHours").addEventListener("click", function(){
-        //     userArray = userArray.sort(compareHours);    
-        //     createList();
-        //   });
+            // delete button  Had trouble with spaces in titles, its an easy thing to fix
+        // I just didn't get the time
+        document.getElementById("buttonDelete").addEventListener("click", function () 
+        {
+        let deleteName = document.getElementById("deleteName").value;
+
+        // doing the call to the server right here
+        fetch('users/deleteName/' + deleteName , {
+        // users/deleteName/Moonstruck   for example, this is what the URL looks like sent over the network
+        method: 'DELETE'
+        })  
+        // now wait for 1st promise, saying server was happy with request or not
+        .then(responsePromise1 => responsePromise1.text()) // ask for 2nd promise when server is node
+        .then(responsePromise2 =>  console.log(responsePromise2), document.location.href = "index.html#listPage")  // wait for data from server to be valid
+        // force jump off of same page to refresh the data after delete
+        .catch(function (err) {
+            console.log(err);
+            alert(err);
+          });
+            FillArrayFromServer();
+        });
 
         document.getElementById("calculate").addEventListener("click", function(){
             calcValues();
-            // userArray.push(new UserObj(document.getElementById("wages").value, 
-            // document.getElementById("hours").value, 
-            // document.getElementById("name").value)
-            //document.location.href = "index.html#listPage";
         });
 
         document.getElementById("addNewUser").addEventListener( "click", function(){
@@ -54,24 +74,37 @@ userArray.push(new UserObj(28, 85, "Roody"));
             document.getElementById("hours").value,
             document.getElementById("wages").value);
             addNewUSer(newUser);
-            location.href = "#inputPage";
+
+            //location.href = "#inputPage";
         });
                
         //need this for when I go back to list page
         $(document).on("pagebeforeshow", "#listPage", function (event) {   // have to use jQuery 
         document.getElementById("results").value;
         document.getElementById("username").value;
-        createList();
+        FillArrayFromServer(); //gets fresh data
+        //createList();
         
+        });
+        
+        // leaving lastPage to force the pagebeforeshow on lastPage from within that page when delete
+        $(document).on("pagebeforeshow", "#lastPage", function(event){
+          document.location.href = "index.html#resultsPage";
         });
           
 
         $(document).on("pagebeforeshow", "resultsPage", function (event) {   // have to use jQuery 
         let localID =  document.getElementById("IDparmHere").innerHTML;
-        document.getElementById("oneName").innerHTML = "Your name is: " + userArray[userArray.length - 1].Name;
-        document.getElementById("oneWage").innerHTML = "Your wages are: " + userArray[userArray.length - 1].UserWage;
-        document.getElementById("oneHours").innerHTML = "You have worked " + userArray[userArray.length - 1].UserHours;
-        });
+        for(let i=0; i < userArray.length; i++){
+          if(userArray[i].ID == localID){
+            document.getElementById("oneName").innerHTML = "Your name is: " + userArray[userArray.length - 1].Name;
+            document.getElementById("oneWage").innerHTML = "Your wages are: " + userArray[userArray.length - 1].UserWage;
+            document.getElementById("oneHours").innerHTML = "You have worked " + userArray[userArray.length - 1].UserHours;
+            break;
+          }
+        }
+        
+      });
 
     });
           
@@ -92,15 +125,15 @@ function compareWage(a, b) {
     return comparison;
   }
 
-  function compareHours(a, b) {
+  function compareName(a, b) {
     // Use toUpperCase() to ignore character casing
-    const hoursA = a.UserHours;
-    const hoursB = b.UserHours;
+    const nameA = a.Name.toUpperCase();
+    const nameB = b.Name.toUpperCase();
   
     let comparison = 0;
-    if (hoursA > hoursB) {
+    if (nameA > nameB) {
       comparison = 1;
-    } else if (hoursA < hoursB) {
+    } else if (nameA < nameB) {
       comparison = -1;
     }
     return comparison;
@@ -124,6 +157,8 @@ function calcValues() {
     r = results;
     document.getElementById("results").innerHTML = results;
     document.getElementById("username").innerHTML = n;
+ 
+    console.log("Message: " + " " + n + " " + payRate + " "+ hours + " " + r);
    
 
    
@@ -165,10 +200,10 @@ function createList()
 
 
 // code to exchange data with node server
-
+// ('/users/movieList'
 function FillArrayFromServer(){
     // using fetch call to communicate with node server to get all data
-    fetch('/users//userList') 
+    fetch('/users/userList') 
     .then(function (theResonsePromise) {  // wait for reply.  Note this one uses a normal function, not an => function
         return theResonsePromise.json();
     })
@@ -202,7 +237,7 @@ function addNewUSer(newUser){
         // Note this one uses an => function, not a normal function, just to show you can do either 
         .then(theResonsePromise => theResonsePromise.json())    // the .json sets up 2nd promise
         // wait for the .json promise, which is when the data is back
-        .then(theResonsePromiseJson => console.log(theResonsePromiseJson), document.location.href = "#inputPage" )
+        .then(theResonsePromiseJson => console.log(theResonsePromiseJson), document.location.href = "#listPage" )
         // that client console log will write out the message I added to the Repsonse on the server
         .catch(function (err) {
             console.log(err);

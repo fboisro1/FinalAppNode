@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Wage Calculator</title>
+    
+    <link rel="stylesheet" href="./stylesheets/themes/floopy.css"/>
+    <link rel="stylesheet" href="./stylesheets/themes/floopy.min.css"/>
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <link rel="stylesheet" href="./stylesheets/themes/index.css">
+    <script src="./javascripts/index.js"></script>
 
-    <link rel="stylesheet" href="/FinalNode/public/stylesheets/themes/floopy.css" />
-    <link rel="stylesheet" href="/FinalNode/public/stylesheets/themes/floopy.min.css"/>
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-   
-    <link rel="stylesheet" href="/FinalNode/public/stylesheets/style.css"/>
-    <script src="/NodeCourseProj/public/javascripts/index.js"></script>
+
 
 </head>
 
@@ -31,7 +33,7 @@
             </div>
             <!--  Home page content -->
             <div data-role="content" data-theme='a'>
-                <img src="/NodeCourseProj/images/newGif.gif" alt="gif">
+                <img src="../images/newGif.gif" alt="gif">
                 
             </div>
               
@@ -54,7 +56,8 @@
             </div>
             <!--  inputPage page content -->
             <div data-role="content" data-theme='a'>
-                <img src="/NodeCourseProj/images/leaf.gif" alt="leafy gif">
+                <img src="../images/leaf.gif" alt="leafy gif">
+
                 <form name="formcalc">
                 <p> Enter the following information to calculate your annual salary.</p>
                 
@@ -119,12 +122,12 @@
              --> 
              <div data-role="content" data-theme='a'>
                  <div>
-                    <img src="/NodeCourseProj/images/giphy.gif" alt="gif" >
+                    <img src="../images/giphy.gif" alt="gif" >
                 </div>
             </div>
             <br>
         
-            <p>These are your: </p>   <p id="results">Results</p>
+            <p>These are your results: </p>   <p id="results">Results</p>
             <p id="username">Name</p>
             
             
@@ -150,7 +153,7 @@
                     <ul>
                        <li> <a href="#home" data-role="button">Home</a></li>
                        <li> <a href="#inputPage" data-role="button">Input Page</a> </li>
-                       <li> <a href="#resultsPage" data-role="button">Results Page</a></li>
+                       <li> <a href="#" data-role="button">Results Page</a></li>
                        <li> <a href="#lastPage" data-role="button">Last Page</a></li>
                     </ul>
                 </div>
@@ -161,25 +164,38 @@
             <div data-role="content" data-theme='a'>
                 <h1> Congratulations! Here are your results Page 3!</h1>
                 
-                <div id="divUserList"></div>
+               
 
                 <div data-role="content" data-theme='a'>
+                    
                     <div>
-                       <img src="/NodeCourseProj/images/giphy.gif" alt="gif" >
+                        
+                       <img src="../images/giphy.gif" alt="gif" >
                        <p id="IDparmHere" hidden>Oops!</p>
-                       <p id="oneName"></p>
-                       <p id ="oneWage"></p>
-                       <p id="oneHours"></p>
+                       <br>
+                       <p class="bold">Here are your details</p>
+                       <p><span class="bold"> Name: </span><span  id="oneName" ></span></p>
+                       <p><span class="bold" id="oneWage"> Wage: </span></p>
+                       <p><span class="bold" id="oneHours"> Hours: </span></p>
+
+                    
                    </div>
+                   <div id="divUserList"></div>
+                   <p>Sort by name or by wage!</p>
+                   <input type="button" value="Sort by name" id="sortByName" data-inline="true"/>
+                   <input type="button" value="Sort by wages" id="sortByWages" data-inline="true"/>
+                   <br>
+                   <br>
+                   <p>Enter a name and delete</p>
+                   <input type="text" value="" id="deleteName" data-inline="true"/>
+                   <input type="button" value="Delete name from list of names." id="buttonDelete" data-inline="true" />
                </div>
-                <!--
-                <input type="button" value="Sort by hours" id="sortByHours" data-inline="true"/>
-                <input type="button" value="Sort by wages" id="sortByWages" data-inline="true"/>
-                -->
+                
+               
             </div>
             
             <div>
-                <button id="addNewUser">Add new info here</button>
+                <input type="button" value="Click to add user" id="addNewUser" data-inline="true" />
             </div>
 
             <!--  Page 3 footer -->
